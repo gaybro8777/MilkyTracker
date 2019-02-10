@@ -99,7 +99,7 @@ void PatternEditorControl::initKeyBindings()
 	eventKeyDownBindingsFastTracker->addBinding(VK_TAB, KeyModifierALT, &PatternEditorControl::eventKeyDownBinding_NextChannel);
 	eventKeyDownBindingsFastTracker->addBinding(VK_TAB, KeyModifierSHIFT|KeyModifierALT, &PatternEditorControl::eventKeyDownBinding_PreviousChannel);
 
-	eventKeyDownBindingsFastTracker->addBinding(VK_DELETE, 0, &PatternEditorControl::eventKeyDownBinding_DeleteNote);
+	eventKeyDownBindingsFastTracker->addBinding(VK_BACK, 0, &PatternEditorControl::eventKeyDownBinding_DeleteNote);
 	eventKeyDownBindingsFastTracker->addBinding(VK_DELETE, KeyModifierSHIFT, &PatternEditorControl::eventKeyDownBinding_DeleteNoteVolumeAndEffect);
 	eventKeyDownBindingsFastTracker->addBinding(VK_DELETE, KeyModifierCTRL, &PatternEditorControl::eventKeyDownBinding_DeleteVolumeAndEffect);
 	eventKeyDownBindingsFastTracker->addBinding(VK_DELETE, KeyModifierALT, &PatternEditorControl::eventKeyDownBinding_DeleteEffect);
