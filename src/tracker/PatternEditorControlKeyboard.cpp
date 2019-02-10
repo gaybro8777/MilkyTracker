@@ -56,7 +56,7 @@ void PatternEditorControl::initKeyBindings()
 
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_INSERT, 0, &PatternEditorControl::eventKeyDownBinding_InsertNote);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_INSERT, KeyModifierSHIFT, &PatternEditorControl::eventKeyDownBinding_InsertLine);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_BACK, 0, &PatternEditorControl::eventKeyDownBinding_DeleteNoteSlot);
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_BACK, 0, &PatternEditorControl::eventKeyDownBinding_DeleteNote);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_BACK, KeyModifierSHIFT, &PatternEditorControl::eventKeyDownBinding_DeleteLine);
 
 	eventKeyDownBindingsMilkyTracker->addBinding('Z', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_Undo);
@@ -1251,7 +1251,12 @@ void PatternEditorControl::eventKeyDownBinding_DeleteNote()
 {
 	// prevent unnecessary screen refreshing through listener callback
 	patternEditor->setLazyUpdateNotifications(true);
-	patternEditor->deleteCursorSlotData(this);
+
+	if (hasValidSelection())
+		patternEditor->clearSelection();
+	else
+		patternEditor->deleteCursorSlotData(this);
+
 	patternEditor->setLazyUpdateNotifications(false);
 }
 
