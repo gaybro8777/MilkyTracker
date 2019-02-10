@@ -539,7 +539,7 @@ pp_int32 PatternEditorControl::ScanCodeToNote(pp_int16 scanCode)
 		// CAPS-lock
 		case SC_CAPSLOCK:
 #ifndef WIN32
-		case SC_1:
+		case 0x1E: //note off on A key (fork)
 #endif
 			return PatternTools::getNoteOffNote();
 
