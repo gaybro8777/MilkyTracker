@@ -108,11 +108,11 @@ void Tracker::initKeyBindings()
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F10, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayPatternFromFIRSTQUARTER);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F11, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayPatternFromSECONDQUARTER);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F12, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayPatternFromTHIRDQUARTER);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayRow);
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_TogglePlayPosition);
 	// !! trace uses a hardcoded key-up event processing, check if you ever decide to change this shortcut
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierALT, &Tracker::eventKeyDownBinding_PlayTrace);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_ESCAPE, 0, &Tracker::eventKeyDownBinding_Stop);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, 0, &Tracker::eventKeyDownBinding_Edit);
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_ESCAPE, 0, &Tracker::eventKeyDownBinding_Edit);
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, 0, &Tracker::eventKeyDownBinding_TogglePlay);
 	eventKeyDownBindingsMilkyTracker->addBinding('U', KeyModifierSHIFT, &Tracker::eventKeyDownBinding_UnmuteAll);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F4, KeyModifierALT, &Tracker::eventKeyDownBinding_ExitApplication);
 	
@@ -366,6 +366,30 @@ void Tracker::eventKeyDownBinding_PlayPosition()
 		return;
 
 	playerLogic->playPosition();
+}
+
+void Tracker::eventKeyDownBinding_TogglePlay()
+{
+	if(playerController->isPlaying())
+	{
+		eventKeyDownBinding_Stop();
+	}
+	else
+	{
+		eventKeyDownBinding_PlayPattern();
+	}
+}
+
+void Tracker::eventKeyDownBinding_TogglePlayPosition()
+{
+	if(playerController->isPlaying())
+	{
+		eventKeyDownBinding_Stop();
+	}
+	else
+	{
+		eventKeyDownBinding_PlayPosition();
+	}
 }
 
 void Tracker::eventKeyDownBinding_PlayPatternFromFIRSTQUARTER()

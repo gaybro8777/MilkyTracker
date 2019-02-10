@@ -515,7 +515,10 @@ private:
 	void eventKeyDownBinding_PlayTrace();
 	void eventKeyDownBinding_Stop();
 	void eventKeyDownBinding_Edit();	
-
+	
+	void eventKeyDownBinding_TogglePlay();
+	void eventKeyDownBinding_TogglePlayPosition();
+	
 	void eventKeyDownBinding_UnmuteAll();
 
 	void eventKeyDownBinding_Open();
