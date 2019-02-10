@@ -1251,11 +1251,8 @@ void PatternEditorControl::eventKeyDownBinding_DeleteNote()
 {
 	// prevent unnecessary screen refreshing through listener callback
 	patternEditor->setLazyUpdateNotifications(true);
-
-	if (hasValidSelection())
-		patternEditor->clearSelection();
-	else
-		patternEditor->deleteCursorSlotData(this);
+	
+	patternEditor->deleteCursorSlotData(this);
 
 	patternEditor->setLazyUpdateNotifications(false);
 }
