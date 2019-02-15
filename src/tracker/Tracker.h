@@ -496,6 +496,9 @@ private:
 
 	void setOctave(pp_uint32 octave);
 
+	void eventKeyDownBinding_OctaveUp();
+	void eventKeyDownBinding_OctaveDown();
+	
 	void eventKeyDownBinding_SelectOctave1();
 	void eventKeyDownBinding_SelectOctave2();
 	void eventKeyDownBinding_SelectOctave3();
@@ -504,7 +507,7 @@ private:
 	void eventKeyDownBinding_SelectOctave6();
 	void eventKeyDownBinding_SelectOctave7();
 	void eventKeyDownBinding_SelectOctave8();
-	
+
 	void eventKeyDownBinding_PlaySong();
 	void eventKeyDownBinding_PlayPattern();
 	void eventKeyDownBinding_PlayPosition();

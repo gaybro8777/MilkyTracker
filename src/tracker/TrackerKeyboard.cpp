@@ -164,12 +164,12 @@ void Tracker::initKeyBindings()
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD7, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD8, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD9, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_MULTIPLY, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_MULTIPLY, 0, &Tracker::eventKeyDownBinding_OctaveUp);	
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_ADD, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_SEPARATOR, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_SUBTRACT, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_DECIMAL, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_DIVIDE, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_DIVIDE, 0, &Tracker::eventKeyDownBinding_OctaveDown);	
 
 	// Key-down bindings for Fasttracker
 	// tab stuff
@@ -249,8 +249,8 @@ void Tracker::initKeyBindings()
 	eventKeyDownBindingsFastTracker->addBinding(VK_MULTIPLY, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
 	eventKeyDownBindingsFastTracker->addBinding(VK_ADD, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
 	eventKeyDownBindingsFastTracker->addBinding(VK_SEPARATOR, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsFastTracker->addBinding(VK_SUBTRACT, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsFastTracker->addBinding(VK_DECIMAL, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	eventKeyDownBindingsFastTracker->addBinding(VK_SUBTRACT, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);
+	eventKeyDownBindingsFastTracker->addBinding(VK_DECIMAL, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);
 	eventKeyDownBindingsFastTracker->addBinding(VK_DIVIDE, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
 
 
@@ -300,6 +300,26 @@ void Tracker::setOctave(pp_uint32 octave)
 {
 	getPatternEditor()->setCurrentOctave(octave);
 	updatePatternAddAndOctave();
+}
+
+void Tracker::eventKeyDownBinding_OctaveUp()
+{
+	const unsigned int currentOctave = getPatternEditor()->getCurrentOctave();
+
+	if (currentOctave < 8)
+	{
+		setOctave(currentOctave + 1);
+	}
+}
+
+void Tracker::eventKeyDownBinding_OctaveDown()
+{
+	const unsigned int currentOctave = getPatternEditor()->getCurrentOctave();
+
+	if (currentOctave > 1)
+	{
+		setOctave(currentOctave - 1);
+	}
 }
 
 // Change octave on keyboards which have no function keys
